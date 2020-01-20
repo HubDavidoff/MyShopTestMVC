@@ -8,12 +8,12 @@ using Shop.Core.Models;
 
 namespace Shop.DataAccess.InMemory
 {
-    public class Repository
+    public class ProductRepository
     {
         ObjectCache cache = MemoryCache.Default;
         List<Product> products;
 
-        public Repository()
+        public ProductRepository()
         {
             products = cache["products"] as List<Product>;
             if(products == null)
@@ -67,7 +67,6 @@ namespace Shop.DataAccess.InMemory
             if (product != null)
             {
                 products.Remove(product);
-
             }
             else
             {
