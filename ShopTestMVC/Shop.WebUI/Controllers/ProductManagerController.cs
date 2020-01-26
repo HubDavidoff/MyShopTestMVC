@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,12 +12,12 @@ namespace Shop.WebUI.Controllers
     public class ProductManagerController : Controller
     {
         // GET: ProductManager
-        ProductRepository context;
-        ProductCategoryRepository productCategories;
+        InMemoryRepository<Product> context;
+        InMemoryRepository<ProductCategory> productCategories;
         public ProductManagerController()
         {
-            context = new ProductRepository();
-            productCategories = new ProductCategoryRepository();
+            context = new InMemoryRepository<Product>();
+            productCategories = new InMemoryRepository<ProductCategory>();
 
         }
         public ActionResult Index()
@@ -51,7 +51,7 @@ namespace Shop.WebUI.Controllers
         public ActionResult Edit(string Id)
         {
 
-            Product product = context.Collection().ToList().Find(p => p.Id == Id);
+            Product product = context.Find(Id);
             if(product != null)
             {
                 ProductManagerViewModel ViewModel = new ProductManagerViewModel();
